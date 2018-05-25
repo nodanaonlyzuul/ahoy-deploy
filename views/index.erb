@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Deployment of
+    <%= params[:app_name] %>
+  </title>
+  <script type="text/javascript" src="http://localhost:9292/faye/client.js">
+  </script>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+
+<body style="text-align:center;">
+  <h1><%= params[:app_name] %></h1>
+  <h2 id="deploymentNotification">...has been deployed!</h2>
+  <p id="deplyMessage" style="display:none;">
+
+  </p>
+  <script type="text/javascript">
+    var client = new Faye.Client('http://localhost:9292/faye');
+    var subscription = client.subscribe("/<%= params[:app_name] %>", function(message) {
+      // Play sound
+      // Show message
+      // Hide message & rewind sound
+    });
+  </script>
+
+</body>
+
+</html>
