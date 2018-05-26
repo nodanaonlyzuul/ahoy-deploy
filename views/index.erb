@@ -28,21 +28,32 @@
       formats: ["ogg", "mp3"]
     });
 
-    sound.bind('ended', function () {
-      $('#deploymentNotification').hide(200);
+    sound.bind('ended', function() {
+      $('#deploymentNotification').fadeOut(200);
+      $('#lightningContainer').fadeOut(100);
     });
-    // Faye Stuff
-    var client = new Faye.Client('http://localhost:9292/faye');
 
-    $(function () {
+    // UI Stuff
+    function makeSound(message) {
+      sound.play();
+      $('#deploymentNotification').html(message);
+      $('#deploymentNotification').fadeIn(200);
+      $('#lightningContainer').fadeIn(100).delay(100).fadeOut(20).fadeIn(100).delay(60).fadeOut(200).fadeIn(200);
+    };
+
+    // Faye Stuff
+    var client = new Faye.Client('/faye');
+
+    $(function() {
       var subscription = client.subscribe("/<%= params[:app_name] %>", function(message) {
-        sound.play();
-        $('#deploymentNotification').html(message);
-        $('#deploymentNotification').show(200);
+        makeSound(message);
       });
     })
   </script>
 
+  <div id="lightningContainer" style="display:none;">
+    <img id="lightningImage" src="/images/lightning.png" alt="">
+  </div>
 </body>
 
 </html>

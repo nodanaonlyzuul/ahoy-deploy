@@ -1,13 +1,14 @@
 body {
-   background-image: url("../images/thundergod.png");
-   background-size: 50%;
-   background-repeat: no-repeat;
-   background-color: #eee;
+  background-image: url("../images/thundergod.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-color: #eee;
+  color: red;
 }
 
 h1 {
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 5em;
+  font-size: 6vw;
   font-style: normal;
   font-variant: normal;
   font-weight: 500;
@@ -48,4 +49,14 @@ pre {
   font-variant: normal;
   font-weight: 400;
   line-height: 23px;
+}
+
+#lightningContainer {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+#lightningImage {
+  width: 100%;
 }
