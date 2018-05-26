@@ -1,6 +1,13 @@
+body {
+   background-image: url("../images/thundergod.png");
+   background-size: 50%;
+   background-repeat: no-repeat;
+   background-color: #eee;
+}
+
 h1 {
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 23px;
+  font-size: 5em;
   font-style: normal;
   font-variant: normal;
   font-weight: 500;
