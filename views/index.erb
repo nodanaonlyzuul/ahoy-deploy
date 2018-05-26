@@ -31,6 +31,7 @@
     sound.bind('ended', function() {
       $('#deploymentNotification').fadeOut(200);
       $('#lightningContainer').fadeOut(100);
+      $('body').removeClass('night');
     });
 
     // UI Stuff
@@ -39,6 +40,7 @@
       $('#deploymentNotification').html(message);
       $('#deploymentNotification').fadeIn(200);
       $('#lightningContainer').fadeIn(100).delay(100).fadeOut(20).fadeIn(100).delay(60).fadeOut(200).fadeIn(200);
+      $('body').addClass('night');
     };
 
     // Faye Stuff
