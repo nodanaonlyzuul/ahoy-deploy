@@ -8,7 +8,8 @@
   </title>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.1/buzz.min.js" charset="utf-8"></script>
-  <script type="text/javascript" src="http://localhost:9292/faye/client.js"></script>
+  <script type="text/javascript" src="/faye/client.js"></script>
+  <script src="/javascript/moment.js" charset="utf-8"></script>
   <link rel="stylesheet" href="/css/app.css" />
 </head>
 
@@ -21,7 +22,7 @@
       <!-- will get filled in with deployment message  -->
     </p>
   </div>
-
+  
   <script type="text/javascript">
     // Sound Stuff
     var sound = new buzz.sound("/sounds/deploy_sound", {
@@ -29,7 +30,7 @@
     });
 
     sound.bind('ended', function() {
-      $('#deploymentNotification').fadeOut(200);
+      $('#deploymentNotification').fadeOut(3000);
       $('#lightningContainer').fadeOut(100);
       $('body').removeClass('night');
     });
