@@ -1,6 +1,7 @@
 # Ahoy Deploy
 
 A Drop-dead simple way of alerting a room to a deployment.
+It's as simple as its author.
 
 ## Installing Locally / Getting Running
 
