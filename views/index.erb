@@ -27,7 +27,7 @@
   </div>
 
   <div class="fl w-25">&nbsp;</div>
-  <div class="fl w-50" style="display:none;">
+  <div id="deployTableHolder" class="fl w-50" style="display:none;">
     <table style="width:100%;text-align:left;" class="collapse ba br2 b--black-10 pv2 ph3">
       <thead>
         <tr class="striped--light-gray">
@@ -53,25 +53,26 @@
       $('body').removeClass('night');
     });
 
-    $('#tableBody').blurp("<tr class = 'striped--light-gray' ><td class = 'pv2 ph3' >" + message + "< /td> <td class = 'pv2 ph3' > Time < /td> </tr>").fadeIn(500);
+    // UI Stuff
+    function makeSound(message) {
+      sound.play();
+      $('#deploymentNotification').html(message);
+      $('#deploymentNotification').fadeIn(200);
+      $('#lightningContainer').fadeIn(100).delay(100).fadeOut(20).fadeIn(100).delay(60).fadeOut(200).fadeIn(200);
+      $('body').addClass('night');
 
-        // UI Stuff
-        function makeSound(message) {
-          sound.play();
-          $('#deploymentNotification').html(message);
-          $('#deploymentNotification').fadeIn(200);
-          $('#lightningContainer').fadeIn(100).delay(100).fadeOut(20).fadeIn(100).delay(60).fadeOut(200).fadeIn(200);
-          $('body').addClass('night');
-        };
+      $('#tableBody').prepend("<tr style='background-color: #fff;'><td class = 'pv2 ph3'>" + message + "</td> <td class='pv2 ph3'>" + moment().local().format('LLL') + "</td></tr>");
+      $('#deployTableHolder').fadeIn(300);
+    };
 
-        // Faye Stuff
-        var client = new Faye.Client('/faye');
+    // Faye Stuff
+    var client = new Faye.Client('/faye');
 
-        $(function() {
-          var subscription = client.subscribe("/<%= params[:app_name] %>", function(message) {
-            makeSound(message);
-          });
-        })
+    $(function() {
+      var subscription = client.subscribe("/<%= params[:app_name] %>", function(message) {
+        makeSound(message);
+      });
+    })
   </script>
 
   <div id="lightningContainer" style="display:none;">
