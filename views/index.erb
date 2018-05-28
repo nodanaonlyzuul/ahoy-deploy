@@ -10,19 +10,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.1/buzz.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="/faye/client.js"></script>
   <script src="/javascript/moment.js" charset="utf-8"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/tachyons.min.css">
   <link rel="stylesheet" href="/css/app.css" />
 </head>
 
-<body style="text-align:center;">
-  <h1><%= params[:app_name].upcase %></h1>
+<body class="avenir dark-red">
 
-  <div class="deploymentNotification">
-    <h2 id="deploymentNotification" style="display:none;"></h2>
-    <p id="deployMessage">
-      <!-- will get filled in with deployment message  -->
-    </p>
+  <div class="w-100 pa2" style="text-align:center;">
+    <h1 class='f1'><%= params[:app_name].upcase %></h1>
   </div>
-  
+
+
+  <div class="w-100 pa2" style="text-align:center;" class="deploymentNotification">
+    <h2 class='f2' id="deploymentNotification" style="display:none;"></h2>
+  </div>
+
+  <div class="fl w-25">&nbsp;</div>
+  <div id="deployTableHolder" class="fl w-50" style="display:none;">
+    <table style="width:100%;text-align:left;" class="collapse ba br2 b--black-10 pv2 ph3">
+      <thead>
+        <tr class="striped--light-gray">
+          <th class='pv2 ph3'>Deployment</th>
+          <th class='pv2 ph3'>Time</th>
+        </tr>
+      </thead>
+
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+  </div>
+
   <script type="text/javascript">
     // Sound Stuff
     var sound = new buzz.sound("/sounds/deploy_sound", {
@@ -42,6 +60,9 @@
       $('#deploymentNotification').fadeIn(200);
       $('#lightningContainer').fadeIn(100).delay(100).fadeOut(20).fadeIn(100).delay(60).fadeOut(200).fadeIn(200);
       $('body').addClass('night');
+
+      $('#tableBody').prepend("<tr style='background-color: #fff;'><td class = 'pv2 ph3'>" + message + "</td> <td class='pv2 ph3'>" + moment().local().format('LLL') + "</td></tr>");
+      $('#deployTableHolder').fadeIn(300);
     };
 
     // Faye Stuff
