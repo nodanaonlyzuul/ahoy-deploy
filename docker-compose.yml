@@ -1,0 +1,13 @@
+version: '3.4'
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    environment:
+      - RACK_ENV=development
+    volumes:
+      - '.:/home/app/ahoy-deploy'
+    ports:
+      - '80:80'
