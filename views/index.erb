@@ -15,14 +15,34 @@
   <link rel="stylesheet" href="/css/app.css" />
 </head>
 
-<body style="text-align:center;">
-  <h1><%= params[:app_name].upcase %></h1>
+<body class="avenir">
 
-  <div class="deploymentNotification">
-    <h2 id="deploymentNotification" style="display:none;"></h2>
-    <p id="deployMessage">
-      <!-- will get filled in with deployment message  -->
-    </p>
+  <div class="w-100 pa2" style="text-align:center;">
+    <h1 class='f1'><%= params[:app_name].upcase %></h1>
+  </div>
+
+
+  <div class="w-100 pa2" style="text-align:center;" class="deploymentNotification">
+    <h2 class='f2' id="deploymentNotification" style="display:none;"></h2>
+  </div>
+
+  <div class="fl w-25">&nbsp;</div>
+  <div class="fl w-50">
+    <table style="width:100%;text-align:left;" class="collapse ba br2 b--black-10 pv2 ph3">
+      <thead>
+        <tr class="striped--light-gray">
+          <th class='pv2 ph3'>Deployment</th>
+          <th class='pv2 ph3'>Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="striped--light-gray ">
+          <td class='pv2 ph3'>First</td>
+          <td class='pv2 ph3'>Second</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <script type="text/javascript">
