@@ -2,7 +2,7 @@ body {
   background-image: url("../images/thundergod.png");
   background-size: 50%;
   background-repeat: no-repeat;
-  background-color: #eee;
+  background-color: #ccc;
   transition: background-color 2.0s ease;
 }
 
@@ -20,4 +20,10 @@ body.night {
 
 #lightningImage {
   width: 100%;
+}
+
+#tutorialContainer {
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 0.25em;
 }

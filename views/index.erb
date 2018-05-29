@@ -11,6 +11,7 @@
   <script type="text/javascript" src="/faye/client.js"></script>
   <script src="/javascript/moment.js" charset="utf-8"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?autoload=true&amp;skin=sunburst"></script>
   <link rel="stylesheet" href="/css/tachyons.min.css">
   <link rel="stylesheet" href="/css/app.css" />
 </head>
@@ -27,18 +28,51 @@
   </div>
 
   <div class="fl w-25">&nbsp;</div>
-  <div id="deployTableHolder" class="fl w-50" style="display:none;">
-    <table style="width:100%;text-align:left;" class="collapse ba br2 b--black-10 pv2 ph3">
-      <thead>
-        <tr class="striped--light-gray">
-          <th class='pv2 ph3'>Deployment</th>
-          <th class='pv2 ph3'>Time</th>
-        </tr>
-      </thead>
 
-      <tbody id="tableBody">
-      </tbody>
-    </table>
+  <div class="fl w-50">
+    <div id="deployTableHolder" style='display:none;'>
+      <table style="width:100%;text-align:left;" class="collapse ba br2 b--black-10 pv2 ph3">
+        <thead>
+          <tr class="striped--light-gray">
+            <th class='pv2 ph3'>Deployment</th>
+            <th class='pv2 ph3'>Time</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+    </div>
+
+
+    <div id='tutorialContainer' class="mt5 dark-gray">
+      <h3>What Is This?</h3>
+      <p>
+        A simple way to notify your coworkers that a deployment happened.<br>
+        <a href="https://github.com/nodanaonlyzuul/ahoy-deploy">Source code available on Github.</a>
+      </p>
+
+      <h3>How To Use This?</h3>
+
+      <div class="browserExample">
+        <h4>In The Browser</h4>
+        <p>
+          <% ping_url = "#{request.url}/deploy?message=My App Deployed" %>
+          Go to <a href="<%= ping_url %>"><%= ping_url %></a>
+        </p>
+      </div>
+
+
+      <div class="browserExample">
+        <h4>Via Curl</h4>
+        <pre class="pre prettyprint" style="margin-left: 0px;">
+# Curl is weird about spaces
+curl -G <%= "#{request.url}/deploy" %> --data-urlencode 'message=Application XYZ has been deployed'
+</pre>
+      </div>
+
+      <a id="dismissTutorial" href="#">Dismiss</a>
+    </div>
+
   </div>
 
   <script type="text/javascript">
@@ -69,8 +103,13 @@
     var client = new Faye.Client('/faye');
 
     $(function() {
+
       var subscription = client.subscribe("/<%= params[:app_name] %>", function(message) {
         makeSound(message);
+      });
+      $('#dismissTutorial').on('click', function (e) {
+        e.preventDefault();
+        $('#tutorialContainer').fadeOut(200);
       });
     })
   </script>
