@@ -55,24 +55,22 @@
       <h3>How To Use This?</h3>
 
       <p>
-        curl requests to a special URL after sucsessful deployments. Like this...
+        <strong>after sucsessful deployments</strong> curl requests to a special URL. Like this...
       </p>
 
       <div class="browserExample">
-        <h4>In The Browser</h4>
-        <p>
-          <% ping_url = "#{request.url}/deploy?message=My App Deployed" %>
-          Go to <a target='_blank' href="<%= ping_url %>"><%= ping_url %></a>
-        </p>
-      </div>
-
-
-      <div class="browserExample">
-        <h4>Via Curl</h4>
         <pre class="pre prettyprint" style="margin-left: 0px;">
 # Curl is weird about spaces
 curl -G <%= "#{request.url}/deploy" %> --data-urlencode 'message=Application XYZ has been deployed'
 </pre>
+      </div>
+
+      <div class="browserExample">
+        <h4>Test In The Browser</h4>
+        <p>
+          <% ping_url = "#{request.url}/deploy?message=My App Deployed" %>
+          Go to <a target='_blank' href="<%= ping_url %>"><%= ping_url %></a>
+        </p>
       </div>
 
       <a id="dismissTutorial" href="#">Dismiss</a>
