@@ -13,5 +13,6 @@ Prepare to lose friends at the office.
 ## Example
 
 ```
+# Curl is weird about spaces
 curl -G http://localhost/example-application/deploy --data-urlencode 'message=Application XYZ has been deployed'
 ```
