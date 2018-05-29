@@ -9,3 +9,9 @@ It's as simple as its author.
 1. `docker-compose up`
 1. Point browser to `http://localhost/example-application`
 1. `curl http://localhost/example-application?message=deployed`
+
+## Example
+
+```
+curl -G http://localhost/example-application/deploy --data-urlencode 'message=Application XYZ has been deployed'
+```
