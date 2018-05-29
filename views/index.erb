@@ -50,8 +50,7 @@
           <% %w{my-company-name another-company-name}.each do |company_name| %>
             <li>
               <a target="_blank" href="<%= request.url %><%= company_name %>">
-                <%= request.url %>
-                  <%= company_name %>
+                <%= request.url %><%= company_name %>
               </a>
             </li>
             <% end %>
