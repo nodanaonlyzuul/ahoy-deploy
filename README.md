@@ -1,7 +1,7 @@
 # Ahoy Deploy
 
-A Drop-dead simple way of alerting a room to a deployment.
-It's as simple as its author.
+A simple way of alerting a room to a deployment by [bringing the thunder](https://github.com/nodanaonlyzuul/Paul-Dix--Thundergod).  
+Prepare to lose friends at the office.
 
 ## Installing Locally / Getting Running
 
