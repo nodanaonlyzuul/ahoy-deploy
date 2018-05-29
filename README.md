@@ -19,11 +19,11 @@ curl -G http://localhost/example-application/deploy --data-urlencode 'message=Ap
 
 ## FAQ
 
-**Can I run this in production?**
+**Can I run this in production?**  
 _Sure_
 
-**Can I run this across multiple servers?**
+**Can I run this across multiple servers?**  
 _Yikes, really? Not without [adding a backend to the pubsub server](https://faye.jcoglan.com/ruby/engines.html)_.
 
-**Why?**
+**Why?**  
 _Why not?_
