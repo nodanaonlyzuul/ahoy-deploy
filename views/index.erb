@@ -47,7 +47,8 @@
     <div id='tutorialContainer' class="mt5 dark-gray">
       <h3>What Is This?</h3>
       <p>
-        A simple way to notify your coworkers that a deployment happened.
+        A simple way to notify your coworkers that a deployment happened.<br>
+        <a href="https://github.com/nodanaonlyzuul/ahoy-deploy">Source code available on Github.</a>
       </p>
 
       <h3>How To Use This?</h3>
@@ -55,7 +56,8 @@
       <div class="browserExample">
         <h4>In The Browser</h4>
         <p>
-          Go to <a href="http://localhost/api/deploy?message=MyAppHasDeployed">http://localhost/api/deploy?message=MyAppHasDeployed</a>
+          <% ping_url = "#{request.url}/deploy?message=My App Deployed" %>
+          Go to <a href="<%= ping_url %>"><%= ping_url %></a>
         </p>
       </div>
 
@@ -64,12 +66,11 @@
         <h4>Via Curl</h4>
         <pre class="pre prettyprint" style="margin-left: 0px;">
 # Curl is weird about spaces
-curl -G http://localhost/example-application/deploy --data-urlencode 'message=Application XYZ has been deployed'
+curl -G <%= "#{request.url}/deploy" %> --data-urlencode 'message=Application XYZ has been deployed'
 </pre>
       </div>
 
       <a id="dismissTutorial" href="#">Dismiss</a>
-
     </div>
 
   </div>
