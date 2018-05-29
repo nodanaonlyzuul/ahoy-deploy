@@ -3,9 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Deployment of
-    <%= params[:app_name] %>
-  </title>
+  <title>Ahoy Deploy</title>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.1/buzz.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="/faye/client.js"></script>
@@ -19,106 +17,41 @@
 <body class="avenir dark-red">
 
   <div class="w-100 pa2" style="text-align:center;">
-    <h1 class='f1'><%= params[:app_name].upcase %></h1>
-  </div>
-
-
-  <div class="w-100 pa2" style="text-align:center;" class="deploymentNotification">
-    <h2 class='f2' id="deploymentNotification" style="display:none;"></h2>
+    <h1 class='f1'>Ahoy Deploy: A Deployment Dashboard</h1>
   </div>
 
   <div class="fl w-25">&nbsp;</div>
 
   <div class="fl w-50">
-    <div id="deployTableHolder" style='display:none;'>
-      <table style="width:100%;text-align:left;" class="collapse ba br2 b--black-10 pv2 ph3">
-        <thead>
-          <tr class="striped--light-gray">
-            <th class='pv2 ph3'>Deployment</th>
-            <th class='pv2 ph3'>Time</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-        </tbody>
-      </table>
-    </div>
-
-
     <div id='tutorialContainer' class="mt5 dark-gray">
-      <h3>What Is This?</h3>
+
+      <h2>What is this?</h2>
       <p>
-        A simple way to notify your coworkers that a deployment happened.<br>
-        <a target='_blank' href="https://github.com/nodanaonlyzuul/ahoy-deploy">Source code available on Github.</a>
-        Inspired by <a target='_blank' href='https://github.com/nodanaonlyzuul/Paul-Dix--Thundergod'>the thundergod</a>.
+        A dashboard for recording and displaying your deployments by simple <code>curl</code><br> It makes loud sounds.
       </p>
 
-      <h3>How To Use This?</h3>
+      <h2>Usage</h2>
+      <ol>
+        <li>Go to <code><%= request.url %>YOUR-ORG-NAME-HERE</code> (that's your dashboard)</li>
+        <li>Send a GET to
+          <%= request.url %>YOUR-ORG-NAME-HERE/deploy?message=Deployed <br>(this adds a deployment to the dashboard)</li>
+      </ol>
 
+      <h2>More Examples</h2>
       <p>
-        <strong>after sucsessful deployments</strong> curl requests to a special URL. Like this...
+        For a working example, with curl syntax see these example pages:
+        <ul>
+          <% %w{my-company-name another-company-name}.each do |company_name| %>
+            <li>
+              <a target="_blank" href="<%= request.url %><%= company_name %>">
+                <%= request.url %>
+                  <%= company_name %>
+              </a>
+            </li>
+            <% end %>
+        </ul>
       </p>
-
-      <div class="browserExample">
-        <pre class="pre prettyprint" style="margin-left: 0px;">
-# Curl is weird about spaces
-curl -G <%= "#{request.url}/deploy" %> --data-urlencode 'message=Application XYZ has been deployed'
-</pre>
-      </div>
-
-      <div class="browserExample">
-        <h4>Test In The Browser</h4>
-        <p>
-          <% ping_url = "#{request.url}/deploy?message=My App Deployed" %>
-          Go to <a target='_blank' href="<%= ping_url %>"><%= ping_url %></a>
-        </p>
-      </div>
-
-      <a id="dismissTutorial" href="#">Dismiss</a>
     </div>
-
-  </div>
-
-  <script type="text/javascript">
-    // Sound Stuff
-    var sound = new buzz.sound("/sounds/deploy_sound", {
-      formats: ["ogg", "mp3"]
-    });
-
-    sound.bind('ended', function() {
-      $('#deploymentNotification').fadeOut(3000);
-      $('#lightningContainer').fadeOut(100);
-      $('body').removeClass('night');
-    });
-
-    // UI Stuff
-    function makeSound(message) {
-      sound.play();
-      $('#deploymentNotification').html(message);
-      $('#deploymentNotification').fadeIn(200);
-      $('#lightningContainer').fadeIn(100).delay(100).fadeOut(20).fadeIn(100).delay(60).fadeOut(200).fadeIn(200);
-      $('body').addClass('night');
-
-      $('#tableBody').prepend("<tr style='background-color: #fff;'><td class = 'pv2 ph3'>" + message + "</td> <td class='pv2 ph3'>" + moment().local().format('LLL') + "</td></tr>");
-      $('#deployTableHolder').fadeIn(300);
-    };
-
-    // Faye Stuff
-    var client = new Faye.Client('/faye');
-
-    $(function() {
-
-      var subscription = client.subscribe("/<%= params[:app_name] %>", function(message) {
-        makeSound(message);
-      });
-      $('#dismissTutorial').on('click', function (e) {
-        e.preventDefault();
-        $('#tutorialContainer').fadeOut(200);
-      });
-    })
-  </script>
-
-  <div id="lightningContainer" style="display:none;">
-    <img id="lightningImage" src="/images/lightning.png" alt="">
   </div>
 </body>
 
