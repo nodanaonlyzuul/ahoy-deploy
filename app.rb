@@ -8,7 +8,7 @@ get '/' do
 end
 
 get '/:app_name' do
-  erb :index
+  erb :show
 end
 
 get '/:app_name/deploy' do
