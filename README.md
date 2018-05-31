@@ -27,3 +27,13 @@ _Yikes, really? Not without [adding a backend to the pubsub server](https://faye
 
 **Why?**  
 _Why not?_
+
+## More
+
+This application is also a simple example of:
+
+* Using Docker [multistage builds](https://medium.com/kokster/fun-with-multi-stage-dockerfiles-7da7f11403d2) so one Dockerfile is used for both production and development.
+* Using Faye with nginx/passenger for PubSub.
+* Decent use of the [phusion/passenger-ruby Docker image](https://github.com/phusion/passenger-docker).
+
+So, poke around if you're interested in those things.
